@@ -6,7 +6,11 @@
 
     <groupId>ru.lazarenko</groupId>
     <artifactId>SpringCourse</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>inversion-of-control</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
