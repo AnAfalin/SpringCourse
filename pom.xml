@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>inversion-of-control</module>
+        <module>dependency-injection</module>
     </modules>
 
     <properties>
