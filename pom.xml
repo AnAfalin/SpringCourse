@@ -11,6 +11,7 @@
     <modules>
         <module>inversion-of-control</module>
         <module>dependency-injection</module>
+        <module>hibernate</module>
     </modules>
 
     <properties>
