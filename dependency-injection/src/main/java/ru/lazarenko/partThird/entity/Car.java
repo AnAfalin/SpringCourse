@@ -1,16 +1,22 @@
 package ru.lazarenko.partThird.entity;
 
 public class Car {
+    private Integer id;
     private String model;
     private Integer price;
     private String owner;
     private String year;
 
-    public Car(String model, Integer price, String owner, String year) {
+    public Car(Integer id, String model, Integer price, String owner, String year) {
+        this.id = id;
         this.model = model;
         this.price = price;
         this.owner = owner;
         this.year = year;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getModel() {

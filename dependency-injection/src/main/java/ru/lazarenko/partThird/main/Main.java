@@ -9,13 +9,16 @@ import ru.lazarenko.partThird.config.Configuration;
 
 public class Main {
     public static void main(String[] args) {
-        Car car1 = new Car("BMW", 400_000, "Mike", "2002");
-        Car car2 = new Car("VW", 150_000, "Slava", "1998");
+        Car car1 = new Car(null,"BMW", 400_000, "Mike", "2002");
+        Car car2 = new Car(null,"VW", 150_000, "Slava", "1998");
 
         ApplicationContext context = new AnnotationConfigApplicationContext(Configuration.class);
+
         CarRepository carRepository = context.getBean("carRepository", CarRepository.class);
 
-//        carRepository.saveCar(car1);
+        carRepository.createTableCars();
+        carRepository.saveCar(car1);
+        carRepository.saveCar(car2);
         System.out.println(carRepository.getAllCars());
 
     }
