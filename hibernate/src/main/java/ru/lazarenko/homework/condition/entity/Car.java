@@ -1,12 +1,10 @@
 package ru.lazarenko.homework.condition.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.DynamicUpdate;
 import java.time.LocalDate;
 import java.time.Year;
 
 @Entity
-@DynamicUpdate
 @Table(name = "cars")
 public class Car {
 //    @Id

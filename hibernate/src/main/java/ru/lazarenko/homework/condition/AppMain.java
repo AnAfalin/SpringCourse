@@ -18,14 +18,10 @@ public class AppMain {
         carRepository.saveCar(new Car(null, "Volkswagen-2016", 900_000, "Tim", 2016, LocalDate.of(2022, 9, 15)));
 
         carRepository.getAllCars().forEach(System.out::println);
-        System.out.println(carRepository.getCarById(1));
 
         carRepository.getCarsAfterYear(2015).forEach(System.out::println);
 
-
-       carRepository.deleteCarById(1);
-
-       carRepository.updateProduct(new Car(null, "BMW-2011", 2_500_000, "Mike", 2011, LocalDate.of(2022, 10, 27)), 1);
+//        carRepository.updateProduct(new Car(null, "BMW-2011", 2_500_000, "Mike", 2011, LocalDate.of(2022, 10, 27)), 1);
 
         carRepository.getAllCars().forEach(System.out::println);
     }

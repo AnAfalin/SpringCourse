@@ -8,23 +8,10 @@ import org.hibernate.service.ServiceRegistry;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import ru.lazarenko.homework.condition.entity.Car;
-import ru.lazarenko.homework.condition.repository.CarRepository;
-import ru.lazarenko.homework.condition.repository.ServiceCarRepository;
-
 import java.util.Properties;
 
 @ComponentScan("ru.lazarenko.homework")
 public class ApplicationConfiguration {
-
-    @Bean
-    public CarRepository carRepository(){
-        return new CarRepository(sessionFactory(configuration()), serviceCarRepository());
-    }
-
-    @Bean
-    public ServiceCarRepository serviceCarRepository(){
-        return new ServiceCarRepository();
-    }
 
     @Bean
     public SessionFactory sessionFactory(Configuration configuration){

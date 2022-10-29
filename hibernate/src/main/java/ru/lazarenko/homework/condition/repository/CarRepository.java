@@ -2,19 +2,23 @@ package ru.lazarenko.homework.condition.repository;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import ru.lazarenko.homework.condition.entity.Car;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+@Component
 public class CarRepository {
     private final SessionFactory sessionFactory;
-    private final ServiceCarRepository serviceCarRepository;
 
-    public CarRepository(SessionFactory sessionFactory, ServiceCarRepository serviceCarRepository) {
+    private final CarMapper carMapper;
+
+    public CarRepository(SessionFactory sessionFactory, @Qualifier("carMapper") CarMapper carMapper) {
         this.sessionFactory = sessionFactory;
-        this.serviceCarRepository = serviceCarRepository;
+        this.carMapper = carMapper;
     }
 
     public List<Car> getAllCars(){
@@ -68,7 +72,7 @@ public class CarRepository {
     }
 
     public List<Car> getCarsAfterYear(Integer year){
-        Session session = null; //объявление сессии
+        Session session = null;
 
         try {
             session = sessionFactory.getCurrentSession();
@@ -153,7 +157,7 @@ public class CarRepository {
             if (updatableCar == null) {
                 throw new NoSuchElementException("No car with id = " + id);
             }
-            serviceCarRepository.updateFieldsCar(updatableCar, car);
+            carMapper.updateFieldsCar(updatableCar, car);
             session.persist(updatableCar);
 
             session.getTransaction().commit();

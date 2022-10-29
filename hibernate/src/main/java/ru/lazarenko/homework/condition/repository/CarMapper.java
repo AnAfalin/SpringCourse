@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import ru.lazarenko.homework.condition.entity.Car;
 
 @Component
-public class ServiceCarRepository {
+public class CarMapper {
 
     public void updateFieldsCar(Car oldCar, Car newCar){
         oldCar.setModel(newCar.getModel());
