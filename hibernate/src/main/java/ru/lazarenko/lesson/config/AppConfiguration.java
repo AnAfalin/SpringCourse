@@ -8,6 +8,12 @@ import org.hibernate.service.ServiceRegistry;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import ru.lazarenko.lesson.entity.Product;
+import ru.lazarenko.lesson.entity.relations.manyToMany.Subject;
+import ru.lazarenko.lesson.entity.relations.manyToMany.Teacher;
+import ru.lazarenko.lesson.entity.relations.oneToMany.Department;
+import ru.lazarenko.lesson.entity.relations.oneToMany.Employee;
+import ru.lazarenko.lesson.entity.relations.oneToOne.Passport;
+import ru.lazarenko.lesson.entity.relations.oneToOne.Person;
 
 import java.util.Properties;
 
@@ -37,9 +43,9 @@ public class AppConfiguration {
         Configuration configuration = new Configuration();
 
         Properties properties = new Properties();
-        properties.put(Environment.URL, "jdbc:mysql://localhost:3306/shop");
+        properties.put(Environment.URL, "jdbc:mysql://localhost:3306/hibernate_db");
         properties.put(Environment.USER, "root");
-        properties.put(Environment.PASS, "rootroot");
+        properties.put(Environment.PASS, "root");
         properties.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
         properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
         properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
@@ -49,6 +55,12 @@ public class AppConfiguration {
         properties.put(Environment.GLOBALLY_QUOTED_IDENTIFIERS, "true");
         configuration.setProperties(properties);
         configuration.addAnnotatedClass(Product.class);
+        configuration.addAnnotatedClass(Person.class);
+        configuration.addAnnotatedClass(Passport.class);
+        configuration.addAnnotatedClass(Employee.class);
+        configuration.addAnnotatedClass(Department.class);
+        configuration.addAnnotatedClass(Teacher.class);
+        configuration.addAnnotatedClass(Subject.class);
 
         return configuration;
     }
