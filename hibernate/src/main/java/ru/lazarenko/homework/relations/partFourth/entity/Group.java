@@ -12,9 +12,6 @@ public class Group {
     private Integer id;
     private String title;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private Tutor tutor;
-
     @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "group_id", referencedColumnName = "id")
     private List<Student> students;
@@ -41,14 +38,6 @@ public class Group {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Tutor getTutor() {
-        return tutor;
-    }
-
-    public void setTutor(Tutor tutor) {
-        this.tutor = tutor;
     }
 
     public List<Student> getStudents() {

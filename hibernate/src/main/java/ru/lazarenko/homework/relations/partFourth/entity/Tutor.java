@@ -11,8 +11,8 @@ public class Tutor {
     private String name;
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "tutor_id", referencedColumnName = "id")
-    private Tutor tutor;
+    @JoinColumn(name = "group_id", referencedColumnName = "id")
+    private Group group;
 
     public Tutor() {
     }
@@ -38,11 +38,13 @@ public class Tutor {
         this.name = name;
     }
 
-    public Tutor getTutor() {
-        return tutor;
+    public Group getGroup() {
+        return group;
     }
 
-    public void setTutor(Tutor tutor) {
-        this.tutor = tutor;
+    public void setGroup(Group group) {
+        this.group = group;
     }
+
 }
+
