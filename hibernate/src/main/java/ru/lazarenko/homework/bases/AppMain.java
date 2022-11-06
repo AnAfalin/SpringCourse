@@ -1,9 +1,10 @@
-package ru.lazarenko.homework.condition;
+package ru.lazarenko.homework.bases;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import ru.lazarenko.homework.condition.config.ApplicationConfiguration;
-import ru.lazarenko.homework.condition.entity.Car;
-import ru.lazarenko.homework.condition.repository.CarRepository;
+
+import ru.lazarenko.homework.bases.config.ApplicationConfiguration;
+import ru.lazarenko.homework.bases.entity.Car;
+import ru.lazarenko.homework.bases.repository.CarRepository;
 
 import java.time.LocalDate;
 

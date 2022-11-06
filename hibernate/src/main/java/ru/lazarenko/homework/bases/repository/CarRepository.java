@@ -1,10 +1,10 @@
-package ru.lazarenko.homework.condition.repository;
+package ru.lazarenko.homework.bases.repository;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import ru.lazarenko.homework.condition.entity.Car;
+import ru.lazarenko.homework.bases.entity.Car;
 
 import java.util.List;
 import java.util.NoSuchElementException;

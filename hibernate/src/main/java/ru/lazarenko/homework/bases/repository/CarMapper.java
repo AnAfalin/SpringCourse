@@ -1,7 +1,7 @@
-package ru.lazarenko.homework.condition.repository;
+package ru.lazarenko.homework.bases.repository;
 
 import org.springframework.stereotype.Component;
-import ru.lazarenko.homework.condition.entity.Car;
+import ru.lazarenko.homework.bases.entity.Car;
 
 @Component
 public class CarMapper {

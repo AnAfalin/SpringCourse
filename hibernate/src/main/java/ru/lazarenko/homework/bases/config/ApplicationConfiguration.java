@@ -1,4 +1,4 @@
-package ru.lazarenko.homework.condition.config;
+package ru.lazarenko.homework.bases.config;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -7,7 +7,8 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import ru.lazarenko.homework.condition.entity.Car;
+import ru.lazarenko.homework.bases.entity.Car;
+
 import java.util.Properties;
 
 @ComponentScan("ru.lazarenko.homework")

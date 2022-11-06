@@ -1,4 +1,4 @@
-package ru.lazarenko.homework.condition.entity;
+package ru.lazarenko.homework.bases.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
