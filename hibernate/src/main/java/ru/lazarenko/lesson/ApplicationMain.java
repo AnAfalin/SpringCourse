@@ -27,13 +27,12 @@ public class ApplicationMain {
 //        System.out.println(repository.getProductById(1L));
 
         /*Lesson 2*/
-//        SessionFactory sessionFactory = context.getBean(SessionFactory.class);
-//
-//        Session session = sessionFactory.getCurrentSession();
-//        session.getTransaction().begin();
+        SessionFactory sessionFactory = context.getBean(SessionFactory.class);
+        Session session = sessionFactory.getCurrentSession();
+        session.getTransaction().begin();
 
         /* one-to-one */
-        Person person = new Person(null, "Kate");
+//        Person person = new Person(null, "Kate");
 //        Passport passport = new Passport(null, 1234, 56);
 //        person.setPassport(passport);
 //        session.persist(person);
@@ -60,5 +59,48 @@ public class ApplicationMain {
 //
 //        session.persist(t1);
 //        session.persist(t2);
+
+        /* one-to-one bi-directional */
+//        Person person = new Person(null, "Kate");
+//        Passport passport = new Passport(null, 1234, 56);
+//
+//        passport.setPerson(person);
+//        session.persist(passport);
+
+        /* one-to-many bi-directional */
+//        Department department = new Department(null, "IT");
+//        List<Employee> employees = List.of(
+//                new Employee(null, "Mike", "Java"),
+//                new Employee(null, "Bob", "C++"));
+//
+//        for(Employee employee : employees){
+//            employee.setDepartment(department);
+//            session.persist(employee);
+//        }
+
+        /* many-to-many bi-directional */
+//        Teacher t1 = new Teacher(null, "Mike", 5);
+//        Teacher t2 = new Teacher(null, "Kate", 10);
+//
+//        Subject s1 = new Subject(null, "Math");
+//        Subject s2 = new Subject(null, "History");
+//        Subject s3 = new Subject(null, "Informatics");
+//
+//        s1.setTeachers(List.of(t1, t2));
+//        s2.setTeachers(List.of(t1, t2));
+//        s2.setTeachers(List.of(t2));
+//
+//        session.persist(s1);
+//        session.persist(s2);
+//        session.persist(s3);
+
+        /* Eager */
+//        Person person = session.get(Person.class, 2);
+//        System.out.println(person);
+//        System.out.println(person.getPassport());
+
+
+        session.getTransaction().commit();
+        context.close();
     }
 }
