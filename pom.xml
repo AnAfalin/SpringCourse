@@ -12,6 +12,7 @@
         <module>inversion-of-control</module>
         <module>dependency-injection</module>
         <module>hibernate</module>
+        <module>hibernate-jpa</module>
     </modules>
 
     <properties>
