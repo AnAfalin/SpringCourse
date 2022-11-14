@@ -10,6 +10,7 @@ import ru.lazarenko.jpa.entity.Passport;
 import ru.lazarenko.jpa.entity.Person;
 import ru.lazarenko.jpa.entity.Project;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,6 @@ public class AppMain {
 //        manager.persist(project2);
 
 
-
 //        List<Person> personListIT = new ArrayList<>();
 //        personListIT.add(manager.find(Person.class, 1));
 //        personListIT.add(manager.find(Person.class, 2));
@@ -72,7 +72,6 @@ public class AppMain {
 //
 //        manager.persist(depDev);
 //        manager.persist(depTest);
-
 
 
 //        Person person4 = manager.find(Person.class, 4);
@@ -123,5 +122,99 @@ public class AppMain {
 //
 //        //detached - все объекты, которые не управляются контекстом, после закрытия сессии
 //        manager.persist(person);
+
+        /*каскадное сохранение*/
+//        Department backDev = new Department(null, "Backend");
+//        Department frontDev = new Department(null, "Frontend");
+//
+//        Project project = new Project(null, "First project");
+//
+//        List<Person> personListBackDev =
+//                List.of(new Person(null, "Jim"),
+//                        new Person(null, "Ana"),
+//                        new Person(null, "Slava"),
+//                        new Person(null, "Mike"));
+//
+//        List<Person> personListFrontDev =
+//                List.of(new Person(null, "Irina"),
+//                        new Person(null, "Fedor"));
+//
+//        List<Passport> passportList =
+//                List.of(new Passport(null, "4514", "789456"),
+//                        new Passport(null, "4515", "124785"),
+//                        new Passport(null, "4618", "333874"),
+//                        new Passport(null, "4015", "124555"),
+//                        new Passport(null, "4278", "123587"),
+//                        new Passport(null, "4520", "124785"));
+//
+//        int k = 0;
+//        for (Person person : personListBackDev) {
+//            person.setPassport(passportList.get(k++));
+//            person.setDepartment(backDev);
+//            person.addProject(project);
+//            manager.persist(person);
+//        }
+//        for (Person person : personListFrontDev) {
+//            person.setPassport(passportList.get(k++));
+//            person.setDepartment(frontDev);
+//            person.addProject(project);
+//            manager.persist(person);
+//        }
+//
+//        backDev.setPeople(personListBackDev);
+//        frontDev.setPeople(personListFrontDev);
+//
+//        manager.getTransaction().commit();
+
+        /*каскадное обновление*/
+//        Person person1 = manager.find(Person.class, 3);
+//        Department department = manager.find(Department.class, 2);
+//        department.addPerson(person1);
+//        manager.persist(department);
+//        manager.getTransaction().commit();
+
+        /*каскадное удаление*/
+//        Person person1 = manager.find(Person.class, 3);
+//        manager.remove(person1);
+//        manager.getTransaction().commit();
+
+        /*некорректный пример удаления ManyToMany - при удалении проекта, удаляются и все люди. так делать нельзя*/
+//        Project project = manager.find(Project.class, 1);
+//        manager.remove(project);
+
+        /*некорректный пример удаления OneToMany - при удалении отдела, то удаляются и все люди. так делать нельзя*/
+//        Department department = manager.find(Department.class, 1);
+//        manager.remove(department);
+
+        /*удаление с помощью orphanRemoval*/
+//        Person person = new Person(null, "Leo");
+//        Passport passport = new Passport(null, "5555", "55555");
+//        person.setPassport(passport);
+//        Department department = new Department(null, "Administration");
+//        person.setDepartment(department);
+//        manager.persist(person);
+//
+//        manager.getTransaction().commit();
+
+        /*удаляем из отдела конкретного(осиротевшего работника) и удаляем отдел*/
+//        Department department = manager.find(Department.class, 6);
+//        department.getPeople().remove(0);
+//        manager.remove(department);
+//        manager.getTransaction().commit();
+
+        /*
+        Даны сущности Отдел и Работник. Связь – один ко многим.
+        Добавить новый отдел с уже существующими работниками (сохранить только новый отдел).
+        Добавить новых работников в уже существующий отдел (сохранить только новых работников).
+         */
+//        Department newDev = new Department(null, "Java-Dev");
+//        Department oldDev = manager.find(Department.class, 1);
+//        newDev.setPeople(oldDev.getPeople());
+//        manager.persist(newDev);
+//
+//        List<Person> newPeople = List.of(new Person(null, "Bob"), new Person(null, "Violette"));
+//        oldDev.setPeople(newPeople);
+//        manager.persist(oldDev);
+//        manager.getTransaction().commit();
     }
 }

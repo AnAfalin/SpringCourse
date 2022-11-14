@@ -12,7 +12,7 @@ public class Department {
     private Integer id;
     private String title;
 
-    @OneToMany(mappedBy = "department", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "department", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY/*, orphanRemoval = true*/)
     private List<Person> people;
 
     public Department() {
@@ -48,6 +48,11 @@ public class Department {
             person.setDepartment(this);
         }
         this.people = people;
+    }
+
+    public void addPerson(Person person){
+        people.add(person);
+        person.setDepartment(this);
     }
 
     @Override

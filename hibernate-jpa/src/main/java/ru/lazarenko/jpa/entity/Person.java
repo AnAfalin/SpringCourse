@@ -2,6 +2,7 @@ package ru.lazarenko.jpa.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,7 +13,7 @@ public class Person {
     private Integer id;
     private String name;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "passport_id", referencedColumnName = "id")
     private Passport passport;
 
@@ -72,6 +73,13 @@ public class Person {
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
+    }
+
+    public void addProject(Project project){
+        if(projects == null){
+            projects = new ArrayList<>();
+        }
+        projects.add(project);
     }
 
     @Override
