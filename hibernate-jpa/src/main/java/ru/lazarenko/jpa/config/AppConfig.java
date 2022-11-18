@@ -12,6 +12,6 @@ public class AppConfig {
     @Bean
     public EntityManagerFactory entityManagerFactory(){
         return Persistence
-                .createEntityManagerFactory("persistenceLesson");
+                .createEntityManagerFactory("persistenceHomework");
     }
 }

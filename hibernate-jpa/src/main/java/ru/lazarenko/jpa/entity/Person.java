@@ -17,11 +17,11 @@ public class Person {
     @JoinColumn(name = "passport_id", referencedColumnName = "id")
     private Passport passport;
 
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", referencedColumnName = "id")
     private Department department;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "people_projects",
     joinColumns = @JoinColumn(name = "person_id", referencedColumnName = "id"),
     inverseJoinColumns = @JoinColumn(name = "project_id", referencedColumnName = "id"))

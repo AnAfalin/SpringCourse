@@ -13,7 +13,7 @@ public class Project {
     private Integer id;
     private String title;
 
-    @ManyToMany(mappedBy = "projects", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "projects", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     private List<Person> people;
 
     public Project() {

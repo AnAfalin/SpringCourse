@@ -14,7 +14,6 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class AppMain {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
@@ -104,8 +103,13 @@ public class AppMain {
 //        Person person = manager.find(Person.class, 4);
 //        person.setName("Slava");
 
+        /*еще один способ обновления с использованием метода merge*/
+//        Person newPerson = new Person(4, "Leo");
+//        Person oldPerson = manager.find(Person.class, 4);
+//        newPerson.setDepartment(oldPerson.getDepartment());
+//        newPerson.setPassport(oldPerson.getPassport());
+//        manager.merge(newPerson);
 //        manager.getTransaction().commit();
-
 
         /* Перевод сущности перевести из состояния Transient в Persistence, затем в Removed, затем в Detached с помощью методов EntityManager.*/
 //        //transient - объекты находятся в переходном состоянии, т.е не в контексте и без идентификатора
@@ -170,7 +174,7 @@ public class AppMain {
 //        Person person1 = manager.find(Person.class, 3);
 //        Department department = manager.find(Department.class, 2);
 //        department.addPerson(person1);
-//        manager.persist(department);
+//        manager.merge(department);
 //        manager.getTransaction().commit();
 
         /*каскадное удаление*/

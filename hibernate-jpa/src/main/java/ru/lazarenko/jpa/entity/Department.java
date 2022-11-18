@@ -12,7 +12,7 @@ public class Department {
     private Integer id;
     private String title;
 
-    @OneToMany(mappedBy = "department", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY/*, orphanRemoval = true*/)
+    @OneToMany(mappedBy = "department", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY/*, orphanRemoval = true*/)
     private List<Person> people;
 
     public Department() {
