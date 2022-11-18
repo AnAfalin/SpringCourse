@@ -13,6 +13,7 @@
         <module>dependency-injection</module>
         <module>hibernate</module>
         <module>hibernate-jpa</module>
+        <module>spring-mvc</module>
     </modules>
 
     <properties>
