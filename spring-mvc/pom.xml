@@ -66,6 +66,15 @@
             <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
+
+        <!--Подключение Thymeleaf – современный серверный механизм Java-шаблонов для веб-приложений, способный обрабатывать HTML.
+        С помощью Thymeleaf можно писать шаблоны HTML-страниц, которые будут генерироваться на основании данных, которые передаются в шаблон.
+        -->
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring5</artifactId>
+            <version>3.1.0.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <build>
