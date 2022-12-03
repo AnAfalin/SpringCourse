@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Input</title>
+</head>
+<body>
+<!--После нажатия на кнопку Send произойдет get запрос по url form-handler-->
+<h3>Get form</h3>
+<form method="get" th:action="@{/form-handler}">
+    <label> Firstname <!--Название для формы-->
+        <input type="text" name="firstname"/>
+    </label>
+    <br>
+    <label> Lastname
+        <input type="text" name="lastname"/>
+    </label>
+    <br>
+    <label> Email
+        <input type="text" name="email"/>
+    </label>
+    <br>
+    <button type="submit">Send</button>
+</form>
+
+<h3>Post form</h3>
+<form method="post" th:action="@{/form-handler}" th:object="${user}">
+    <label> Firstname <!--Название для формы-->
+        <input type="text" th:field="*{firstname}"/>
+    </label>
+    <br>
+    <label> Lastname
+        <input type="text" th:field="*{lastname}"/>
+    </label>
+    <br>
+    <label> Email
+        <input type="text" th:field="*{email}"/>
+    </label>
+    <br>
+    <button type="submit">Send</button>
+</form>
+</body>
+</html>
