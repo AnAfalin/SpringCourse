@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.lazarenko.web.model.Person;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class PersonController {
+    private static final List<Person> LIST_PERSONS = new ArrayList<>();
 
     @GetMapping("/create")  // /create?name=Ana&age=25&gender=female
     public String createPersonRequestParam(@RequestParam String name,
@@ -34,17 +38,21 @@ public class PersonController {
                                @RequestParam Integer age,
                                @RequestParam String gender,
                                Model model){
-        model.addAttribute("name", name);
-        model.addAttribute("age", age);
-        model.addAttribute("gender", gender);
+        Person person = new Person(name, age, gender);
+        model.addAttribute("person", person);
         return "result-input";
     }
 
     @PostMapping("/form-handler")
-    public String createPersonPost(@ModelAttribute Person person, Model model) {
-        model.addAttribute("name", person.getName());
-        model.addAttribute("age", person.getAge());
-        model.addAttribute("gender", person.getGender());
-        return "result-input";
+    public String createPersonPost(@ModelAttribute Person person) {
+        LIST_PERSONS.add(person);
+        return "redirect:/resInput";
     }
+
+    @GetMapping("/resInput")
+    public String getInputResult(Model model){
+        model.addAttribute("persons", LIST_PERSONS);
+        return "list";
+    }
+
 }
