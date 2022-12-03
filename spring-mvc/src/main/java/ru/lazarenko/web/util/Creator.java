@@ -2,8 +2,8 @@ package ru.lazarenko.web.util;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import ru.lazarenko.web.beans.Message;
-import ru.lazarenko.web.beans.User;
+import ru.lazarenko.web.model.Message;
+import ru.lazarenko.web.model.User;
 
 @Component
 public class Creator {
@@ -30,4 +30,5 @@ public class Creator {
         message.setText(text);
         return message;
     }
+
 }

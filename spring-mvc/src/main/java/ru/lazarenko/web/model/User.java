@@ -1,4 +1,4 @@
-package ru.lazarenko.web.beans;
+package ru.lazarenko.web.model;
 
 public class User {
     private String name;

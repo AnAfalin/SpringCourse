@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.lazarenko.web.model.Message;
+import ru.lazarenko.web.model.User;
 import ru.lazarenko.web.util.Creator;
-import ru.lazarenko.web.beans.Message;
-import ru.lazarenko.web.beans.User;
 
 @Controller
 public class SentController {

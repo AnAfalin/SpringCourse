@@ -1,4 +1,4 @@
-package ru.lazarenko.web.beans;
+package ru.lazarenko.web.model;
 
 import org.springframework.stereotype.Component;
 
