@@ -8,19 +8,19 @@
 <div style="margin: 15px">
     <h2>Main menu:</h2>
     <p>What do you want to do? Click one button of the next:</p>
-    <form th:action="@{/getInput}">
+    <form th:action="@{/get-input}">
             To page with GET-request
             <button>Go to page</button>
     </form>
-    <form th:action="@{/postInput}">
+    <form th:action="@{/post-input}">
         To page with POST-request
         <button>Go to page</button>
     </form>
-    <form th:action="@{deletePerson}">
+    <form th:action="@{delete-person}">
         To page for DELETE object
         <button>Go to page</button>
     </form>
-    <form th:action="@{/resInput}" method="get">
+    <form th:action="@{/res-input}" method="get">
         To page for show list of Person
         <button>Go to page</button>
     </form>
