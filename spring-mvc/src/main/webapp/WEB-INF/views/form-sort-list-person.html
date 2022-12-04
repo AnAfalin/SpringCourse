@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Print sort list person</title>
+</head>
+<body>
+    <form method="get" th:action="@{/showSortPerson}">
+        <label>Count show object
+            <input name="count">
+        </label>
+        <label>
+            <select name="sortBy">
+                <option>name</option>
+                <option>age</option>
+                <option>gender</option>
+            </select>
+        </label>
+        <label>Type of sort
+            <select name="sortType">
+                <option>ascending</option>
+                <option>descending</option>
+                <option>male</option>
+                <option>female</option>
+            </select>
+        </label>
+        <button>ok</button>
+    </form>
+</body>
+</html>

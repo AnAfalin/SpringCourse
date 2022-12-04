@@ -24,25 +24,5 @@
 
     <input type="submit" value="Send">
 </form>
-
-<h2>Create Person with POST method</h2>
-<form method="post" th:action="@{/form-handler}" th:object="${person}">
-    <label>Name
-        <input type="text" th:field="*{name}">
-    </label>
-
-    <label>Age
-        <input type="text" th:field="*{age}">
-    </label>
-
-    <label>Gender
-        <select th:field="*{gender}">
-            <option value="male">male</option>
-            <option value="female">female</option>
-        </select>
-    </label>
-
-    <input type="submit" value="Send">
-</form>
 </body>
 </html>
