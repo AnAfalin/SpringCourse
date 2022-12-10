@@ -15,6 +15,7 @@
         <module>hibernate-jpa</module>
         <module>spring-mvc</module>
         <module>spring-mvc-lesson</module>
+        <module>spring-mvc-hibernate</module>
     </modules>
 
     <properties>

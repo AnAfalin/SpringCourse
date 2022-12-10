@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Person</title>
+</head>
+<body>
+<h2>Page for delete employee</h2>
+<form th:method="post"
+      th:action="@{/employee/delete}">
+    <p>Insert id employee for employee delete</p>
+    <label style="margin: 5px">Value
+        <input type="text" name="id">
+    </label>
+    <button>delete</button>
+</form>
+</body>
+</html>
