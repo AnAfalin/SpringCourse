@@ -2,23 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Employees</title>
-
+    <title>Result og grouping departments</title>
 </head>
 <body>
 <table>
     <thead>
     <tr>
-        <th>Name</th>
         <th>Department</th>
         <th>Salary</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="employee: ${employees}">
-        <td th:text="${employee.name}">Name</td>
-        <td th:text="${employee.department}">Department</td>
-        <td th:text="${employee.salary}">Salary</td>
+    <tr th:each="element: ${result}">
+        <td th:text="${element.getKey()}">Department</td>
+        <td th:text="${element.getValue()}">Salary</td>
     </tr>
     </tbody>
 </table>

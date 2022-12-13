@@ -8,6 +8,7 @@ import ru.lazarenko.web.entity.Employee;
 import ru.lazarenko.web.service.EmployeeService;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class EmployeeController {
@@ -59,7 +60,7 @@ public class EmployeeController {
         return "show_employee";
     }
 
-    @PostMapping("/employee/showOne")
+    @PostMapping("/employee/show-one")
     public String showSelectEmployee(@RequestParam Integer id, Model model){
         Employee employeeById = employeeService.getEmployeeById(id);
         model.addAttribute("employees", List.of(employeeById));
@@ -67,8 +68,20 @@ public class EmployeeController {
     }
 
     @PostMapping("employee/update")
-    public String showResultUpdateEmployee(@ModelAttribute Employee employee, @RequestParam Integer id, Model model){
-        employeeService.updateEmployee(employee, id);
+    public String showResultUpdateEmployee(@ModelAttribute Employee employee){
+        employeeService.updateEmployee(employee);
         return "redirect:/employees";
+    }
+
+    @GetMapping("/grouping/employee")
+    public String getPageSelectTypeGroup(){
+        return "form_group_employee";
+    }
+
+    @GetMapping("/grouping/result")
+    public String makeResultGroup(@RequestParam String avg, Model model){
+        Map<String, Double> result = employeeService.getMapDepartmentAggregationSalary(avg);
+        model.addAttribute("result", result);
+        return "result_group";
     }
 }

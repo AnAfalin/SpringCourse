@@ -6,11 +6,13 @@ import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.lazarenko.web.entity.Employee;
+import ru.lazarenko.web.model.DepartmentAggregate;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public class EmployeeRepository {
@@ -125,7 +127,7 @@ public class EmployeeRepository {
             entityManager.getTransaction().begin();
 
             Employee updateEmployee = entityManager.find(Employee.class, id);
-            if(updateEmployee != null){
+            if (updateEmployee != null) {
                 updateEmployee.setDepartment(employee.getDepartment());
                 updateEmployee.setName(employee.getName());
                 updateEmployee.setSalary(employee.getSalary());
@@ -144,25 +146,43 @@ public class EmployeeRepository {
         }
     }
 
-    public Map<String, Integer> getMapDepartmentAggregationSalary(String query) {
+    public Map<String, Double> getMapDepartmentAggregationSalary(String query) {
+
         EntityManager entityManager = null;
         try {
             entityManager = entityManagerFactory.createEntityManager();
             entityManager.getTransaction().begin();
 
-            class DepartmentAggregate {
-                String department;
-                Integer salary;
+
+            List<DepartmentAggregate> resultList;
+            if (query.equalsIgnoreCase("max")) {
+                resultList = entityManager
+                        .createQuery(
+                                "SELECT NEW ru.lazarenko.web.model.DepartmentAggregate(em.department, max(em.salary))" +
+                                        "FROM Employee em " +
+                                        "GROUP BY department",
+                                DepartmentAggregate.class)
+                        .getResultList();
+            } else if (query.equalsIgnoreCase("min")) {
+                resultList = entityManager
+                        .createQuery("" +
+                                        "SELECT NEW ru.lazarenko.web.model.DepartmentAggregate(em.department, min(em.salary))" +
+                                        "FROM Employee em " +
+                                        "GROUP BY department",
+                                DepartmentAggregate.class)
+                        .getResultList();
+            } else {
+                resultList = entityManager
+                        .createQuery(
+                                "SELECT NEW ru.lazarenko.web.model.DepartmentAggregate(em.department, avg(em.salary))" +
+                                        "FROM Employee em " +
+                                        "GROUP BY department",
+                                DepartmentAggregate.class)
+                        .getResultList();
             }
-
-            List<DepartmentAggregate> resultList = entityManager
-                    .createQuery("select department " + query + "(salary) from employees group by deparment",
-                            DepartmentAggregate.class)
-                    .getResultList();
-
-            Map<String, Integer> result = new HashMap<>();
+            Map<String, Double> result = new HashMap<>();
             for (DepartmentAggregate element : resultList) {
-                result.put(element.department, element.salary);
+                result.put(element.getDepartment(), element.getSalary());
             }
 
             entityManager.getTransaction().commit();

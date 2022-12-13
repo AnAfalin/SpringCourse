@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Print sort list person</title>
+</head>
+<body>
+    <form method="get" th:action="@{/grouping/result}">
+        <label>Type of aggregation employee by salary for department
+            <select name="avg">
+                <option>min</option>
+                <option>max</option>
+                <option>average</option>
+            </select>
+        </label>
+        <button>ok</button>
+    </form>
+</body>
+</html>

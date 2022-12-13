@@ -36,11 +36,11 @@ public class EmployeeService {
         employeeRepository.deleteEmployee(id);
     }
 
-    public void updateEmployee(Employee employee, Integer id) {
-        employeeRepository.updateEmployee(employee, id);
+    public void updateEmployee(Employee employee) {
+        employeeRepository.saveEmployee(employee);
     }
 
-    public Map<String, Integer> getMapDepartmentAggregationSalary(String query){
+    public Map<String, Double> getMapDepartmentAggregationSalary(String query){
         return employeeRepository.getMapDepartmentAggregationSalary(query);
     }
 }

@@ -10,12 +10,12 @@ public class Employee {
     private Integer id;
     private String name;
     private String department;
-    private Integer salary;
+    private Double salary;
 
     public Employee() {
     }
 
-    public Employee(Integer id, String name, String department, Integer salary) {
+    public Employee(Integer id, String name, String department, Double salary) {
         this.id = id;
         this.name = name;
         this.department = department;
@@ -46,11 +46,11 @@ public class Employee {
         this.department = department;
     }
 
-    public Integer getSalary() {
+    public Double getSalary() {
         return salary;
     }
 
-    public void setSalary(Integer salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
     }
 }
