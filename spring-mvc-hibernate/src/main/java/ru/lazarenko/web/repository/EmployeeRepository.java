@@ -17,6 +17,20 @@ import java.util.stream.Collectors;
 @Repository
 public class EmployeeRepository {
     private final EntityManagerFactory entityManagerFactory;
+    private static final String sqlQueryMaxSalaryByDepartment = "SELECT " +
+            "NEW ru.lazarenko.web.model.DepartmentAggregate(em.department, max(em.salary)) " +
+            "FROM Employee em " +
+            "GROUP BY department";
+
+    private static final String sqlQueryMinSalaryByDepartment = "SELECT " +
+            "NEW ru.lazarenko.web.model.DepartmentAggregate(em.department, min(em.salary)) " +
+            "FROM Employee em " +
+            "GROUP BY department";
+
+    private static final String sqlQueryAvgSalaryByDepartment = "SELECT " +
+            "NEW ru.lazarenko.web.model.DepartmentAggregate(em.department, avg(em.salary)) " +
+            "FROM Employee em " +
+            "GROUP BY department";
 
     @Autowired
     public EmployeeRepository(EntityManagerFactory entityManagerFactory) {
@@ -153,31 +167,18 @@ public class EmployeeRepository {
             entityManager = entityManagerFactory.createEntityManager();
             entityManager.getTransaction().begin();
 
-
             List<DepartmentAggregate> resultList;
             if (query.equalsIgnoreCase("max")) {
                 resultList = entityManager
-                        .createQuery(
-                                "SELECT NEW ru.lazarenko.web.model.DepartmentAggregate(em.department, max(em.salary))" +
-                                        "FROM Employee em " +
-                                        "GROUP BY department",
-                                DepartmentAggregate.class)
+                        .createQuery(sqlQueryMaxSalaryByDepartment, DepartmentAggregate.class)
                         .getResultList();
             } else if (query.equalsIgnoreCase("min")) {
                 resultList = entityManager
-                        .createQuery("" +
-                                        "SELECT NEW ru.lazarenko.web.model.DepartmentAggregate(em.department, min(em.salary))" +
-                                        "FROM Employee em " +
-                                        "GROUP BY department",
-                                DepartmentAggregate.class)
+                        .createQuery(sqlQueryMinSalaryByDepartment, DepartmentAggregate.class)
                         .getResultList();
             } else {
                 resultList = entityManager
-                        .createQuery(
-                                "SELECT NEW ru.lazarenko.web.model.DepartmentAggregate(em.department, avg(em.salary))" +
-                                        "FROM Employee em " +
-                                        "GROUP BY department",
-                                DepartmentAggregate.class)
+                        .createQuery(sqlQueryAvgSalaryByDepartment, DepartmentAggregate.class)
                         .getResultList();
             }
             Map<String, Double> result = new HashMap<>();
