@@ -140,13 +140,14 @@ public class EmployeeRepository {
             entityManager = entityManagerFactory.createEntityManager();
             entityManager.getTransaction().begin();
 
-            Employee updateEmployee = entityManager.find(Employee.class, id);
+            entityManager.merge(employee);
+            /*
             if (updateEmployee != null) {
                 updateEmployee.setDepartment(employee.getDepartment());
                 updateEmployee.setName(employee.getName());
                 updateEmployee.setSalary(employee.getSalary());
             }
-
+             */
             entityManager.getTransaction().commit();
         } catch (Exception ex) {
             if (entityManager != null) {

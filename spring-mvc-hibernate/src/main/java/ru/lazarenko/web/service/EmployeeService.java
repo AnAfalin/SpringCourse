@@ -37,7 +37,8 @@ public class EmployeeService {
     }
 
     public void updateEmployee(Employee employee) {
-        employeeRepository.saveEmployee(employee);
+        employeeRepository.updateEmployee(employee, employee.getId());
+//        employeeRepository.saveEmployee(employee);
     }
 
     public Map<String, Double> getMapDepartmentAggregationSalary(String query){
